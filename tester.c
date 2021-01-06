@@ -89,6 +89,7 @@ void test_all_functions_regular_cases() {
         printf("Pop should be NULL, but it isn't");
     }
 
+    printf("Adding a back in now\n");
     push(stack, a);
     print_stack(stack); // 2 - 
 
