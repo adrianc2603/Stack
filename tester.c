@@ -89,6 +89,9 @@ void test_all_functions_regular_cases() {
         printf("Pop should be NULL, but it isn't");
     }
 
+    push(stack, a);
+    print_stack(stack); // 2 - 
+
     free(a);
     free(b);
     free(c);
