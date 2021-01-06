@@ -3,8 +3,8 @@
 /**
  * Initialise the stack and all its fields. Return a pointer to it
  */
-stack_t *create_stack() {
-    stack_t *stack = malloc(sizeof(stack_t));
+Stack_t *create_stack() {
+    Stack_t *stack = malloc(sizeof(Stack_t));
     stack->top = NULL;
     stack->size = 0;
     return stack;
@@ -13,10 +13,10 @@ stack_t *create_stack() {
 /**
  * Inserts element e
  */
-void push(stack_t *stack, void *e) {
+void push(Stack_t *stack, void *e) {
     if (stack == NULL) {
         printf("Stack is NULL\n");
-        return NULL;
+        return;
     }
     node_t *new_node = malloc(sizeof(node_t));
     new_node->element = e;
@@ -28,7 +28,7 @@ void push(stack_t *stack, void *e) {
 /**
  * Removes and returns the last inserted element
  */
-void *pop(stack_t *stack) {
+void *pop(Stack_t *stack) {
     if (stack == NULL) {
         printf("Stack is NULL\n");
         return NULL;
@@ -48,7 +48,7 @@ void *pop(stack_t *stack) {
 /**
  * Returns the last inserted element without removing it
  */
-void *top(stack_t *stack) {
+void *top(Stack_t *stack) {
     if (stack == NULL) {
         printf("Stack is NULL\n");
         return NULL;
@@ -63,7 +63,7 @@ void *top(stack_t *stack) {
 /**
  * Returns the number of elements stored
  */
-int size(stack_t *stack) {
+int size(Stack_t *stack) {
     if (stack == NULL) {
         printf("Stack is NULL\n");
         return 0;
@@ -74,17 +74,18 @@ int size(stack_t *stack) {
 /**
  * Returns whether elements are stored or not
  */
-bool is_empty(stack_t *stack) {
+bool is_empty(Stack_t *stack) {
     if (stack == NULL) {
         printf("Stack is NULL\n");
         return true;
     }
+    return (stack->size == 0);
 }
 
 /**
  * Free all memory associated with the stack
  */
-void destroy_stack(stack_t *stack) {
+void destroy_stack(Stack_t *stack) {
     if (stack == NULL) {
         printf("Stack is NULL\n");
         return;

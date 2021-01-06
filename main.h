@@ -7,21 +7,21 @@ typedef struct node_t {
     struct node_t *next;
 } node_t;
 
-typedef struct stack_t {
+typedef struct Stack_t {
     node_t *top;
     int size;
-} stack_t;
+} Stack_t;
 
-stack_t *create_stack();
+Stack_t *create_stack();
 
-void push(stack_t *stack, void *e);
+void push(Stack_t *stack, void *e);
 
-void *pop(stack_t *stack);
+void *pop(Stack_t *stack);
 
-void *top(stack_t *stack);
+void *top(Stack_t *stack);
 
-int size(stack_t *stack);
+int size(Stack_t *stack);
 
-bool is_empty(stack_t *stack);
+bool is_empty(Stack_t *stack);
 
 void destroy_stack();
