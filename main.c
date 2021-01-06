@@ -2,6 +2,7 @@
 
 /**
  * Initialise the stack and all its fields. Return a pointer to it
+ * Time Complexity: O(1)
  */
 Stack_t *create_stack() {
     Stack_t *stack = malloc(sizeof(Stack_t));
@@ -12,6 +13,7 @@ Stack_t *create_stack() {
 
 /**
  * Inserts element e
+ * Time Complexity: O(1)
  */
 void push(Stack_t *stack, void *e) {
     if (stack == NULL) {
@@ -27,6 +29,7 @@ void push(Stack_t *stack, void *e) {
 
 /**
  * Removes and returns the last inserted element
+ * Time Complexity: O(1)
  */
 void *pop(Stack_t *stack) {
     if (stack == NULL) {
@@ -47,6 +50,7 @@ void *pop(Stack_t *stack) {
 
 /**
  * Returns the last inserted element without removing it
+ * Time Complexity: O(1)
  */
 void *top(Stack_t *stack) {
     if (stack == NULL) {
@@ -62,6 +66,7 @@ void *top(Stack_t *stack) {
 
 /**
  * Returns the number of elements stored
+ * Time Complexity: O(1)
  */
 int size(Stack_t *stack) {
     if (stack == NULL) {
@@ -73,6 +78,7 @@ int size(Stack_t *stack) {
 
 /**
  * Returns whether elements are stored or not
+ * Time Complexity: O(1)
  */
 bool is_empty(Stack_t *stack) {
     if (stack == NULL) {
@@ -84,6 +90,7 @@ bool is_empty(Stack_t *stack) {
 
 /**
  * Free all memory associated with the stack
+ * Time Complexity: O(n)
  */
 void destroy_stack(Stack_t *stack) {
     if (stack == NULL) {
