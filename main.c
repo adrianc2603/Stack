@@ -17,7 +17,6 @@ Stack_t *create_stack() {
  */
 void push(Stack_t *stack, void *e) {
     if (stack == NULL) {
-        printf("Stack is NULL\n");
         return;
     }
     node_t *new_node = malloc(sizeof(node_t));
@@ -33,11 +32,9 @@ void push(Stack_t *stack, void *e) {
  */
 void *pop(Stack_t *stack) {
     if (stack == NULL) {
-        printf("Stack is NULL\n");
         return NULL;
     }
     if (is_empty(stack)) {
-        printf("Stack is empty\n");
         return NULL;
     }
     node_t *rem_node = stack->top;
@@ -54,11 +51,9 @@ void *pop(Stack_t *stack) {
  */
 void *top(Stack_t *stack) {
     if (stack == NULL) {
-        printf("Stack is NULL\n");
         return NULL;
     }
     if (is_empty(stack)) {
-        printf("Stack is empty\n");
         return NULL;
     }
     return stack->top->element;
@@ -70,7 +65,6 @@ void *top(Stack_t *stack) {
  */
 int size(Stack_t *stack) {
     if (stack == NULL) {
-        printf("Stack is NULL\n");
         return 0;
     }
     return stack->size;
@@ -82,7 +76,6 @@ int size(Stack_t *stack) {
  */
 bool is_empty(Stack_t *stack) {
     if (stack == NULL) {
-        printf("Stack is NULL\n");
         return true;
     }
     return (stack->size == 0);
@@ -94,7 +87,6 @@ bool is_empty(Stack_t *stack) {
  */
 void destroy_stack(Stack_t *stack) {
     if (stack == NULL) {
-        printf("Stack is NULL\n");
         return;
     }
     while (!is_empty(stack)) {
