@@ -19,6 +19,17 @@ void print_stack(Stack_t *stack) {
     printf("\n\n");
 }
 
+/**
+ * Helper function to heap allocate an integer, push the integer to the stack 
+ * and return a pointer to the integer
+ */
+int *create_push_element(Stack_t *stack, int e) {
+    int *p = malloc(sizeof(int));
+    *p = e;
+    push(stack, p);
+    return p;
+}
+
 void test_all_functions_regular_cases() {
     Stack_t *stack = create_stack();
 
@@ -32,30 +43,28 @@ void test_all_functions_regular_cases() {
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 1 (True);
     print_stack(stack); // Prints nothing
     
-    int *a = malloc(sizeof(int));
-    *a = 2;
-    push(stack, a);
+    // Insert 2
+    int *a = create_push_element(stack, 2);
     printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 2
     printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 1
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
     print_stack(stack); // 2 - 
 
-    int *b = malloc(sizeof(int));
-    *b = 5;
-    push(stack, b);
+    // Insert 5
+    int *b = create_push_element(stack, 5);
     printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 5
     printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 2
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
     print_stack(stack); // 5 - 2 - 
 
-    int *c = malloc(sizeof(int));
-    *c = 3;
-    push(stack, c);
+     // Insert 3
+    int *c = create_push_element(stack, 3);
     printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 3
     printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 3
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
     print_stack(stack); // 3 - 5 - 2 - 
 
+    // Remove 3
     int *rem_elem = (int*) pop(stack);
     printf("The removed element is %d\n", *rem_elem); // The removed element is 3
     printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 5
@@ -63,13 +72,15 @@ void test_all_functions_regular_cases() {
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
     print_stack(stack); // 5 - 2 - 
 
+    // Remove 5
     rem_elem = (int*) pop(stack);
     printf("The removed element is %d\n", *rem_elem); // The removed element is 5
     printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 2
     printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 1
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
-    print_stack(stack); // 5 - 2 - 
+    print_stack(stack); // 2 - 
 
+    // Remove 2
     rem_elem = (int*) pop(stack);
     printf("The removed element is %d\n", *rem_elem); // The removed element is 2
     if (top(stack) == NULL) {
@@ -82,6 +93,7 @@ void test_all_functions_regular_cases() {
     printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 1 (True);
     print_stack(stack); // Nothing prints
 
+    // Try to pop from empty stack
     if (pop(stack) == NULL) {
         printf("Pop is NULL because the stack is empty\n"); // This should print
     }
@@ -89,6 +101,7 @@ void test_all_functions_regular_cases() {
         printf("Pop should be NULL, but it isn't");
     }
 
+    // Add back in to ensure destroy_stack frees all nodes and the stack itself
     printf("Adding a back in now\n");
     push(stack, a);
     print_stack(stack); // 2 - 
