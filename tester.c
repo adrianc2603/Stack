@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "main.h"
 
 /**
@@ -32,78 +33,64 @@ int *create_push_element(Stack_t *stack, int e) {
 
 void test_all_functions_regular_cases() {
     Stack_t *stack = create_stack();
-
-    if (top(stack) == NULL) {
-        printf("The top of the stack is NULL because the stack is empty\n"); // This should print
-    }
-    else {
-        printf("The top of the stack isn't NULL, but it should be");
-    }
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 0
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 1 (True);
+    assert(top(stack) == NULL);
+    assert(size(stack) == 0);
+    assert(is_empty(stack) == true);
     print_stack(stack); // Prints nothing
     
     // Insert 2
     int *a = create_push_element(stack, 2);
-    printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 2
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 1
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
+    assert(*(int*) top(stack) == 2);
+    assert(size(stack) == 1);
+    assert(is_empty(stack) == false);
     print_stack(stack); // 2 - 
 
     // Insert 5
     int *b = create_push_element(stack, 5);
-    printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 5
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 2
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
+    assert(*(int*) top(stack) == 5);
+    assert(size(stack) == 2);
+    assert(is_empty(stack) == false);
     print_stack(stack); // 5 - 2 - 
 
      // Insert 3
     int *c = create_push_element(stack, 3);
-    printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 3
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 3
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
+    assert(*(int*) top(stack) == 3);
+    assert(size(stack) == 3);
+    assert(is_empty(stack) == false);
     print_stack(stack); // 3 - 5 - 2 - 
 
     // Remove 3
     int *rem_elem = (int*) pop(stack);
-    printf("The removed element is %d\n", *rem_elem); // The removed element is 3
-    printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 5
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 2
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
+    assert(*rem_elem == 3);
+    assert(*(int*) top(stack) == 5);
+    assert(size(stack) == 2);
+    assert(is_empty(stack) == false);
     print_stack(stack); // 5 - 2 - 
 
     // Remove 5
     rem_elem = (int*) pop(stack);
-    printf("The removed element is %d\n", *rem_elem); // The removed element is 5
-    printf("The element at the top of the stack is %d\n", *(int*) top(stack)); // The element at the top of the stack is 2
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 1
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 0 (False);
+    assert(*rem_elem == 5);
+    assert(*(int*) top(stack) == 2);
+    assert(size(stack) == 1);
+    assert(is_empty(stack) == false);
     print_stack(stack); // 2 - 
 
     // Remove 2
     rem_elem = (int*) pop(stack);
-    printf("The removed element is %d\n", *rem_elem); // The removed element is 2
-    if (top(stack) == NULL) {
-        printf("The top of the stack is NULL because the stack is empty\n"); // This should print
-    }
-    else {
-        printf("The top of the stack isn't NULL, but it should be");
-    }
-    printf("The size of the stack is %d\n", size(stack)); // The size of the stack is 0
-    printf("Is the stack empty? %d\n", is_empty(stack)); // Is the stack empty? 1 (True);
+    assert(*rem_elem == 2);
+    assert(top(stack) == NULL);
+    assert(size(stack) == 0);
+    assert(is_empty(stack) == true);
     print_stack(stack); // Nothing prints
 
     // Try to pop from empty stack
-    if (pop(stack) == NULL) {
-        printf("Pop is NULL because the stack is empty\n"); // This should print
-    }
-    else {
-        printf("Pop should be NULL, but it isn't");
-    }
+    assert(pop(stack) == NULL);
 
     // Add back in to ensure destroy_stack frees all nodes and the stack itself
-    printf("Adding a back in now\n");
     push(stack, a);
+    assert(*(int*) top(stack) == 2);
+    assert(size(stack) == 1);
+    assert(is_empty(stack) == false);
     print_stack(stack); // 2 - 
 
     free(a);
