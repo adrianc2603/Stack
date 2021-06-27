@@ -54,36 +54,36 @@
         -:   49: * Returns the last inserted element without removing it
         -:   50: * Time Complexity: O(1)
         -:   51: */
-        7:   52:void *top(Stack_t *stack) {
-        7:   53:    if (stack == NULL) {
+        8:   52:void *top(Stack_t *stack) {
+        8:   53:    if (stack == NULL) {
     #####:   54:        return NULL;
         -:   55:    }
-        7:   56:    if (is_empty(stack)) {
+        8:   56:    if (is_empty(stack)) {
         2:   57:        return NULL;
         -:   58:    }
-        5:   59:    return stack->top->element;
+        6:   59:    return stack->top->element;
         -:   60:}
         -:   61:
         -:   62:/**
         -:   63: * Returns the number of elements stored
         -:   64: * Time Complexity: O(1)
         -:   65: */
-        7:   66:int size(Stack_t *stack) {
-        7:   67:    if (stack == NULL) {
+        8:   66:int size(Stack_t *stack) {
+        8:   67:    if (stack == NULL) {
     #####:   68:        return 0;
         -:   69:    }
-        7:   70:    return stack->size;
+        8:   70:    return stack->size;
         -:   71:}
         -:   72:
         -:   73:/**
         -:   74: * Returns whether elements are stored or not
         -:   75: * Time Complexity: O(1)
         -:   76: */
-       21:   77:bool is_empty(Stack_t *stack) {
-       21:   78:    if (stack == NULL) {
+       23:   77:bool is_empty(Stack_t *stack) {
+       23:   78:    if (stack == NULL) {
     #####:   79:        return true;
         -:   80:    }
-       21:   81:    return (stack->size == 0);
+       23:   81:    return (stack->size == 0);
         -:   82:}
         -:   83:
         -:   84:/**
